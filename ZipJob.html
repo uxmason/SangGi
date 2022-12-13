@@ -14,15 +14,14 @@
 
         body{
             display: flex;
+            flex-direction: column;
             width: 1000px;
-            height: 1000px;
-            border: solid black 3px;
+            height: auto;
             margin: 10px auto;
             background: rgba(95,190,185,1);
         }
         
         .mainHeader{
-            border: solid red 3px;
             width: 100%;
             height: 100px;
             display: flex;
@@ -38,23 +37,22 @@
 
         .headerManu{
             list-style: none;
-            border: 2px black solid;
-            width: 700px;
+            width: 530px;
             height: 100%;
             margin-left: auto;
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             justify-items: center;
         }
         .headerManu div{
-            border: black 1px solid;
-            width: 300px;
+            width: 500px;
             height: 100px;
-          
-            padding: 30px
+            padding: 0px;
+            display: flex;
+            align-items: flex-end;
         }
+
         .headerManu h1 {
-            margin : 40px 0px 0px 170px;
             width: 140px;
             height: 50px;
             padding-top: 10px;
@@ -64,18 +62,85 @@
             color: rgba(95,190,185,1);
             border: white solid 3px;
             border-radius: 30px;
+            text-decoration: none;
         }
+ 
         .headerManu li{
             display: inline-block;
-            flex: auto;
+            margin-left: 17px;
         }
+        /* 본문 */
+        .mainArticle{
+            width: 100%;
+            height: 705px;
+        }
+        .section-textBox{
+            width: 500px;
+            height: 400px;
+        }
+
+        .image-0{
+            position: relative;
+            width: 650px;
+            height: auto;
+            left: 300px;
+            margin-top: -420px;
+        }
+        .section-textBox .text-0 {
+            font-size: 4.3em;
+            width: 500px;
+            color: white;
+            font-weight: 700;
+            margin-top: 80px;
+            margin-left: 30px;
+        }
+        /* .section-textBox .text-1 br {
+            display: none;
+        } */
+        .section-textBox .text-1 {
+            font-size: 1.2em;
+            width: 350px;
+            color: white;
+            margin-top: 10px;
+            line-height: 1.6em;
+            margin-left: 30px;
+        }
+        .section-textBox .text-2 {
+            font-size: 1em;
+            width: 250px;
+            color: white;
+            margin-top: 10px;
+            font-weight: 200;
+            line-height: 1.6em;
+            margin-left: 30px;
+        }
+
+        .mainNav {
+            width: 25px;
+            position: fixed;
+            display: inline-block;
+            top: 45%;
+            left: 88%; 
+        }
+        .mainNav ul{
+            list-style: none;
+        }
+        .button-1{
+        width: 24px;
+        height: 24px;
+        margin-top: 15px;
+        background: url(https://www.baemin.com/_next/static/images/dotScroll02@2x.png) 50% no-repeat;
+        border : none;
+       }
     </style>
 </head>
+
 <body>
     <header class="mainHeader">
         <h1 class="headerTitle">Zip Job</h1>
         <ul class= "headerManu">
-            <li><a href="test"><h1>앱 다운로드</h1></a></li>
+            
+            <li class="appDw"><a href="test"><h1>앱 다운로드</h1></a></li>
             <div>
                 <li><a href="test"><img src="https://www.baemin.com/_next/static/images/iconFacebook@2x.png"></a></li>
                 <li><a href="test"><img src="https://www.baemin.com/_next/static/images/iconInstagram@2x.png"></a></li>
@@ -85,7 +150,24 @@
         </ul>
     </header>
 
-    <article></article>
+    <article class="mainArticle">
+        <section>
+            <div class="section-textBox">
+                <p class="text-0">줄 서서<br> 먹던 맛집도 <br>배달가능</p>
+                <p class="text-1">배달이 안되던 동네 맛집까지 ~<br>배민라이더스가 직접 배달해드립니다.</p>
+                <p class="text-2">서울 전지역, 경기 및 광역시 일부 지역에서 서비스 이용 가능!</p>
+            </div>
+            <img alt="이미지" src="https://www.baemin.com/_next/static/images/img-people@2x.png" class="image-0">
+            <nav class="mainNav">
+                <ul>
+                    <li> <button type="button" aria-labelledby="section-1" class="button-1"></button> </li>
+                    <li> <button type="button" aria-labelledby="section-1" class="button-1"></button> </li>
+                    <li> <button type="button" aria-labelledby="section-1" class="button-1"></button> </li>
+                    <li> <button type="button" aria-labelledby="section-1" class="button-1"></button> </li>
+                </ul>
+            </nav>
+        </section>
+    </article>
     <nav></nav>
 </body>
 </html>
