@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body{
+            margin: 20px auto;
+            border: 2px dotted red;
+            display: flex;
+            justify-items: center;
+            flex-wrap: wrap;
+            width: 1000px;
+            height: 1000px;
+        }
+        /* 여긴 헤더 */
+        .mainHeader{
+            border: black solid 1px;
+            width: 500px;
+            height: 450px;
+            margin: 10px;
+            display: flex;
+            justify-items: flex-start;
+            align-items: flex-start;
+        }
+        
+        /* 여긴 article */
+
+        .mainArticle{
+            border: blue 1px solid;
+            margin: 10px;
+            width: 450px;
+            height: 90%;
+        }
+
+        /* 여긴 footer */
+        
+        .mainFooter{
+            border: saddlebrown 1px solid;
+            margin: -450px 10px auto 10px;
+            width: 500px;
+            height: 400px;
+        }
+
+        /* 세부적 메뉴 */
+        .headerManu{
+            border: saddlebrown 1px solid;
+            display: flex;
+            flex-direction: column;
+            margin: 30px 20px;
+            width: 450px;
+            height: 400px;
+        }
+        .headerManu div{
+            margin: 70px auto 0px auto;
+            border: darkgoldenrod 1px solid;
+        }
+        .headerManu ul{
+            list-style-type: none;
+            
+        }
+        .manu-01 ul{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .manu-01 li{
+            text-align: center;
+            flex : 1 1 40%;
+            margin: 5px;
+        }
+        .manu-01 a:link{
+            font : 20px bold;
+            color: black;
+        }
+
+        .manu-02{
+            width: 90%;
+        }
+        .manu-02 ul{
+            display: flex;
+            justify-items: center;
+        }
+        .manu-02 li{
+            text-align: center;
+            display: inline-block;
+            flex: 1;
+        }
+        .manu-02 img {
+            width: 45px;
+            height: 35px;
+        }
+    </style>
+    
+</head>
+<body>
+    
+    <header class="mainHeader">
+       <nav class="headerManu">
+        <div class="manu-01">    
+            <ul>
+                <li><a href="test">우아한형제들</a></li>
+                <li><a href="test">배민문방구</a></li>
+                <li><a href="test">배민사장님광장</a></li>
+                <li><a href="test">배민커넥트</a></li>
+            </ul>
+        </div>
+        <div class="manu-02">
+            <ul>
+                <li><a href="test"><img src="https://www.baemin.com/_next/static/images/icon-facebook@2x.png"></a></li>
+                <li><a href="test"><img src="https://www.baemin.com/_next/static/images/icon-instagram@2x.png"></a></li>
+                <li><a href="test"><img src="https://www.baemin.com/_next/static/images/icon-blog@2x.png"></a></li>
+                <li><a href="test"><img src="https://www.baemin.com/_next/static/images/icon-youtube@2x.png"></a></li>
+            </ul>
+        </div>
+       </nav>
+    </header>
+    
+    
+    <article class="mainArticle">
+        
+    </article>
+
+    <footer class="mainFooter">
+        <abbr>(주)집잡</abbr>
+        <p>울산 광역시 울주군 어딘가...</p>
+        <p>울산 광역시 울주군 어딘가...</p>
+        <p>울산 광역시 울주군 어딘가...</p>
+        <p>울산 광역시 울주군 어딘가...</p>
+        <p>울산 광역시 울주군 어딘가...</p>
+        <p>울산 광역시 울주군 어딘가...</p>
+    </footer>
+    
+</body>
+</html>
