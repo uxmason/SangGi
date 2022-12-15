@@ -5,39 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZipJob</title>
+    
+    <!-- <link rel="stylesheet" href="./main.css" /> -->
     <style>
+
+
         *{
-            box-sizing: border-box;
-            padding: 0px;
-            margin: 0px;
+        box-sizing: border-box;
+        padding: 0px;
+        margin: 0px;
         }
 
         body{
-            display: flex;
-            flex-direction: column;
-            width: 1000px;
-            height: auto;
-            margin: 10px auto;
+            /* display: flex;
+            flex-direction: column;*/
             background: rgba(95,190,185,1);
         }
-        
+
+        body::-webkit-scrollbar {
+        display: none;
+        }
+
         .mainHeader{
-            width: 100%;
+            width: 1000px;
             height: 100px;
             display: flex;
-            align-items: center;
+            position: fixed;    
+            margin: 0 auto;
+            left: 0;
+            right: 0;    
+            z-index: 10;          
         }
 
         .headerTitle{
-            margin: 30px 0px 0px 27px;
+            margin-top: 60px;
+            margin-left: 35px;
             color: white;
-            font-size: 40px;
+            font-size: 2.5rem;
             font-weight: bold;
         }
 
         .headerManu{
             list-style: none;
-            width: 530px;
+            width: 53%;
             height: 100%;
             margin-left: auto;
             display: flex;
@@ -45,7 +55,7 @@
             justify-items: center;
         }
         .headerManu div{
-            width: 500px;
+            width: 100%;
             height: 100px;
             padding: 0px;
             display: flex;
@@ -55,6 +65,7 @@
         .headerManu h1 {
             width: 140px;
             height: 50px;
+            margin-left: -20px;
             padding-top: 10px;
             font-size: 20px;
             text-align: center;
@@ -64,7 +75,19 @@
             border-radius: 30px;
             text-decoration: none;
         }
- 
+        .mainSection {
+            width: 1000px;
+            height: 100%;
+            display: block;
+            position: absolute;
+            left:50%;
+            margin-left: -500px;
+        }
+
+        .mainSection.card-0 {
+        margin-top:100%;
+        }
+
         .headerManu li{
             display: inline-block;
             margin-left: 17px;
@@ -72,23 +95,32 @@
         /* 본문 */
         .mainArticle{
             width: 100%;
-            height: 705px;
+            height: 100%;
+            position: absolute;
+            /* height: 705px; */
+            top:0;
+            
         }
+
+
         .section-textBox{
-            width: 500px;
+            width: 50%;
             height: 400px;
+            margin-top: 150px;
         }
 
         .image-0{
-            position: relative;
-            width: 650px;
+            position: absolute;
+            width: 500px;
             height: auto;
-            left: 300px;
-            margin-top: -420px;
+            bottom: 0;
+            right:70px;
+            
         }
+
         .section-textBox .text-0 {
             font-size: 4.3em;
-            width: 500px;
+            width: 100%;
             color: white;
             font-weight: 700;
             margin-top: 80px;
@@ -99,7 +131,7 @@
         } */
         .section-textBox .text-1 {
             font-size: 1.2em;
-            width: 350px;
+            width: 100%;
             color: white;
             margin-top: 10px;
             line-height: 1.6em;
@@ -107,7 +139,7 @@
         }
         .section-textBox .text-2 {
             font-size: 1em;
-            width: 250px;
+            width: 55%;
             color: white;
             margin-top: 10px;
             font-weight: 200;
@@ -125,22 +157,32 @@
         .mainNav ul{
             list-style: none;
         }
+
         .button-1{
         width: 24px;
         height: 24px;
         margin-top: 15px;
         background: url(https://www.baemin.com/_next/static/images/dotScroll02@2x.png) 50% no-repeat;
         border : none;
-       }
-    </style>
+        }
+        .button-0{
+        text-decoration: none;
+        }
+
+
+
+        
+        </style>
+    
 </head>
 
 <body>
+
     <header class="mainHeader">
         <h1 class="headerTitle">Zip Job</h1>
         <ul class= "headerManu">
             
-            <li class="appDw"><a href="test"><h1>앱 다운로드</h1></a></li>
+            <li class="appDw"><a href="test" class="button-0"><h1>앱 다운로드</h1></a></li>
             <div>
                 <li><a href="test"><img src="https://www.baemin.com/_next/static/images/iconFacebook@2x.png"></a></li>
                 <li><a href="test"><img src="https://www.baemin.com/_next/static/images/iconInstagram@2x.png"></a></li>
@@ -151,7 +193,23 @@
     </header>
 
     <article class="mainArticle">
-        <section>
+        <section class="mainSection">
+            <div class="section-textBox">
+                <p class="text-0">줄 서서<br> 먹던 맛집도 <br>배달가능</p>
+                <p class="text-1">배달이 안되던 동네 맛집까지 ~<br>배민라이더스가 직접 배달해드립니다.</p>
+                <p class="text-2">서울 전지역, 경기 및 광역시 일부 지역에서 서비스 이용 가능!</p>
+            </div>
+            <img alt="이미지" src="https://www.baemin.com/_next/static/images/img-people@2x.png" class="image-0">
+            <nav class="mainNav">
+                <ul>
+                    <li> <button type="button" aria-labelledby="section-1" class="button-1"></button> </li>
+                    <li> <button type="button" aria-labelledby="section-1" class="button-1"></button> </li>
+                    <li> <button type="button" aria-labelledby="section-1" class="button-1"></button> </li>
+                    <li> <button type="button" aria-labelledby="section-1" class="button-1"></button> </li>
+                </ul>
+            </nav>
+        </section>
+        <section class="mainSection card-0">
             <div class="section-textBox">
                 <p class="text-0">줄 서서<br> 먹던 맛집도 <br>배달가능</p>
                 <p class="text-1">배달이 안되던 동네 맛집까지 ~<br>배민라이더스가 직접 배달해드립니다.</p>
@@ -168,6 +226,6 @@
             </nav>
         </section>
     </article>
-    <nav></nav>
+
 </body>
 </html>
