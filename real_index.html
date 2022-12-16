@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zipjob</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            border: solid 1px red;
+        }
+
+        body, html{
+            background-color: rgb(244, 192, 28);
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .main-Box{
+            display: flex;
+            flex-direction: column;
+            width: 1600px;
+            height: 100vh;
+            margin: 0 auto;
+        }
+
+        .mainContainer_01{
+            width: 1600px;
+            height: 25vh;
+            display: flex;
+            position: fixed;
+        }
+
+        .con1_header{
+            height: 100%;
+            width: 20%;
+            margin-left: 70px;
+            display: flex;
+            flex-direction: column;
+        }
+        .con1_header h1, .con1_header h2{
+            text-indent: -999999px;
+            display: inline-block;
+        }
+
+        .con1_title_01{
+            display: block;
+            background: url(./images/title.png) no-repeat;
+            background-size: 100% 100%;
+            margin-top: 60px;
+            width: 150px;
+            height: 120px;
+        }
+
+        .con1_title_02{
+            display: block;
+            background: url(./images/subtitle.png) no-repeat;
+            background-size: 100% 100%;
+            width: 310px;
+            height: 85px;
+            margin-left: -3px;
+        }
+
+        .con1_nav{
+            height: 100%;
+            width: 50%;
+            margin-right: 100px;
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .link-0{
+            width: 70px;
+            height: 65px;
+        }
+
+        .link-1{
+            background: url(./images/header_nav1.png) no-repeat;
+            background-size: 100% 100%;
+            opacity:1;
+        }
+        .link-2{
+            background: url(./images/header_nav2.png) no-repeat;
+            background-size: 100% 100%;
+            opacity:1;
+        } 
+        .link-3{
+            background: url(./images/header_nav3.png) no-repeat;
+            background-size: 100% 100%;
+            opacity:1;
+        }
+        .link-4{
+            background: url(./images/header_nav4.png) no-repeat;
+            background-size: 100% 100%;
+            opacity:1;
+        }
+
+        .con1_nav ul{
+            height: 60px;
+            width: 320px;
+            list-style: none;
+        }
+
+        .con1_nav li, .con1_nav a{
+            display: inline-block;
+            height: 70px;
+            width: 80px;
+        }
+
+        .mainContainer_02{
+            margin-top: 25vh;
+            width: 100%;
+            height: 75vh;
+            display: flex;
+            width: 1600px;
+            height: 100%;
+        }
+
+        .link_down{
+            width: 100px;
+            margin-right: 180px;
+            margin-bottom: 5px;
+        }
+        .link_down div{
+            background: url(./images/appdown.png);
+            width: 240px;
+            height: 80px;
+            background-size: 100% 100%;
+        }
+        .space{
+            width: 250px;
+        }
+        .con2_section{
+            display: flex;
+            width: 720px;
+            flex-direction: column;
+            height: 100%;
+            margin-left: 70px;
+        }
+
+        .section_nav{
+            margin-top: auto;
+            width: 650px;
+            height: 200px;
+            display: flex;
+        }
+
+        .section_nav a{
+            display: inline-block;
+            flex:1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .section_nav a div{
+            margin-top: 30px;
+            width: 200px;
+            height: 70px;
+        }
+        
+        .con2_section h2{
+            width: 370px;
+            height: 100px;
+            margin-top: 10px;
+            background: url(./images/section-01.png) no-repeat;
+            background-size: 100% 100%;
+            text-indent: -999999px;
+        }
+
+        .con2_section h1{
+            margin-top: 10px;
+            width: 98%;
+            height: 370px;
+            text-indent: -999999px;
+            background: url(./images/section-02.png) no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .con2_section h3{
+            margin-top: 40px;
+            width: 87%;
+            height: 100px;
+            font-size: 1.8rem;
+            color: rgb(91, 98, 134);
+            font-weight: 900;
+            /* text-indent: -999999px;
+            background: url(./images/section-03.png) no-repeat;
+            background-size: 100% 100%; */
+        }
+
+        .section_img{
+            width: 574px;
+            height: 75vh;
+            padding-left: 25px;
+            padding-top: 0px;
+            padding-bottom: 105px;
+        }
+        .section_img div{
+            width: 100%;
+            height: 100%;
+            background: url(./images/section-img-01.png) no-repeat;
+            background-size: 100% 100%;
+        }
+
+           /* 네비 숨기기 */
+        .section_nav, .section_nav *{
+            display: none;
+        }
+
+        .main_nav{
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+            height: 700px;
+            top : 270px;
+            right: 1%;
+        }
+
+        .main_nav ul{
+            width: 50px;
+            height: 270px;
+            list-style: none;
+            margin-top: auto;
+            margin-left: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        } 
+        .main_nav li{
+            margin: auto;
+            width: 30px;
+            height: 30px;
+            margin: 2px;
+            background: url(./images/navDirector.png) no-repeat;
+            background-size: 70% 70%;
+            background-position: center;
+        }
+
+        .QRcode{
+            width: 200px;
+            height: 220px;
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .QRcode div{
+            width: 180px;
+            height: 180px;
+            margin: auto;
+            background: url(./images/QRcode.png);
+            background-size: 100% 100%;
+            
+        }
+
+        .QRcode p{
+            margin-top: auto;
+            height: 30px;
+            text-indent: -999999px;
+            background: url(./images/QRcodeContents.png) no-repeat;
+            background-size: 100% 100%;
+        }
+            /* 섹션3번 내용 숨기기 */
+        /* .con2_section h3{
+            display: none;
+        } */
+    </style>
+</head>
+
+<body>
+        <article class="main-Box">
+            <div class="mainContainer_01">
+                <header class="con1_header">
+                    <a href="test" class="con1_title_01"><h1>집잡</h1></a>
+                    <a class="con1_title_02"><h2>집에서 잡았다!</h2></a>
+                </header>
+                <nav class="con1_nav">
+                    <ui>
+                        <li class="link_down"><a href="test" class="link_down"><div ></div></a></li>
+                        <li><a><div class="link-0 link-1"></div></a></li>
+                        <li><a><div class="link-0 link-2"></div></a></li>
+                        <li><a><div class="link-0 link-3"></div></a></li>
+                        <li><a><div class="link-0 link-4"></div></a></li>
+                    </ui>
+                </nav>
+            </div>
+
+            <div class="mainContainer_02">
+                <section class="con2_section">
+                    <h2>무엇이 다른가요?</h2>
+                    <h1>무작위 배정, 무한정 대기. 그런 게 없어요.</h1>
+                    <h3>현장 사장님이 직접 올린 구인공고를 스마트폰<br> 화면으로 보면서 내가 원하는 일을 선택하고 업무<br> 일정까지 잡을 수 있어요.</h3>
+                    <nav class="section_nav">
+                        <a>
+                            <div></div>
+                        </a>
+                        <a>
+                            <div></div>
+                        </a>
+                    </nav>
+                </section>
+                <div class="section_img">
+                    <div></div>
+                </div>
+            </div>
+            <nav class="main_nav">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+                <div class="QRcode">
+                    <div></div>
+                    <p>QR코드 다운로드</p>
+                </div>
+            </nav>
+        </article>
+</body>
+</html>
