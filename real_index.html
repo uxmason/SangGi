@@ -1,12 +1,101 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <title>zipjob</title>
+
+    <script>
+
+        $(function () {
+
+            const speed = 300;
+            const totolPageNumber = 4;
+            let PageHeight = window.innerHeight;
+            let positionPageHeight = 0;
+            let nowPageNumber = 0;
+            let moveTop = 0;
+            let nowPageHeight = window.scrollY;
+
+            const throttle = (callback, delay) => {
+                let timer;
+
+                return (event) => {
+                    // 타이머가 호출되면, 함수를 실행하고 타이머 제거
+                    if (timer) return;
+                    timer = setTimeout(() => {
+                        callback(event);
+                        timer = null;
+                    }, delay);
+                };
+            };
+
+            function test() {
+                
+                let nowPageHeight = window.scrollY;
+
+
+
+                if (positionPageHeight < nowPageHeight) {
+
+                    nowPageNumber = nowPageNumber >= totolPageNumber ? totolPageNumber : (++nowPageNumber);
+                    moveTop = window.innerHeight * nowPageNumber;
+                    positionPageHeight = moveTop;
+                    nowPageHeight = moveTop;
+
+                    $('html, body').animate({
+                        scrollTop: moveTop
+                    }, speed);
+
+                    return;
+                }
+
+
+
+                if (positionPageHeight > nowPageHeight) {
+
+
+                    nowPageNumber = nowPageNumber <= 0 ? 0 : (--nowPageNumber);
+                    moveTop = window.innerHeight * nowPageNumber;
+                    positionPageHeight = moveTop;
+                    nowPageHeight = moveTop;
+
+                    $('html, body').animate({
+                        scrollTop: moveTop
+                    }, speed);
+
+                    return;
+                }
+
+
+
+
+
+                console.log("현재 화면 위치", nowPageHeight);
+
+                console.log("이동px", moveTop);
+                console.log("페이지 : ", nowPageNumber);
+
+            }
+
+
+
+
+            $(window).scroll(throttle(test, 500));
+            $("html, body").stop().animate({
+                       scrollTop: moveTop
+            }, speed);
+
+
+        })
+
+    </script>
+
     <style>
-        *{
+        * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -15,16 +104,17 @@
         }
 
         body::-webkit-scrollbar {
-        display: none;
+            display: none;
         }
 
-        body, html{
+        body,
+        html {
             background-color: rgb(244, 192, 28);
             width: 100vw;
             height: 100vh;
         }
 
-        .main-Box{
+        .main-Box {
             display: flex;
             flex-direction: column;
             width: 1600px;
@@ -32,7 +122,7 @@
             margin: 0 auto;
         }
 
-        .mainContainer_01{
+        .mainContainer_01 {
             z-index: 10;
             width: 1600px;
             height: 250px;
@@ -40,7 +130,7 @@
             position: fixed;
         }
 
-        .con1_header{
+        .con1_header {
             height: 100%;
             width: 20%;
             margin-left: 70px;
@@ -48,12 +138,14 @@
             flex-direction: column;
             justify-content: center;
         }
-        .con1_header h1, .con1_header h2{
+
+        .con1_header h1,
+        .con1_header h2 {
             text-indent: -999999px;
             display: inline-block;
         }
 
-        .con1_title_01{
+        .con1_title_01 {
             display: block;
             background: url(./images/title.png) no-repeat;
             background-size: 100% 100%;
@@ -62,7 +154,7 @@
             height: 120px;
         }
 
-        .con1_title_02{
+        .con1_title_02 {
             display: block;
             background: url(./images/subtitle.png) no-repeat;
             background-size: 100% 100%;
@@ -71,7 +163,7 @@
             margin-left: -3px;
         }
 
-        .con1_nav{
+        .con1_nav {
             height: 100%;
             width: 50%;
             margin-right: 100px;
@@ -80,46 +172,50 @@
             align-items: center;
             justify-content: center;
         }
-        
-        .link-0{
+
+        .link-0 {
             width: 70px;
             height: 65px;
         }
 
-        .link-1{
+        .link-1 {
             background: url(./images/header_nav1.png) no-repeat;
             background-size: 100% 100%;
-            opacity:1;
-        }
-        .link-2{
-            background: url(./images/header_nav2.png) no-repeat;
-            background-size: 100% 100%;
-            opacity:1;
-        } 
-        .link-3{
-            background: url(./images/header_nav3.png) no-repeat;
-            background-size: 100% 100%;
-            opacity:1;
-        }
-        .link-4{
-            background: url(./images/header_nav4.png) no-repeat;
-            background-size: 100% 100%;
-            opacity:1;
+            opacity: 1;
         }
 
-        .con1_nav ul{
+        .link-2 {
+            background: url(./images/header_nav2.png) no-repeat;
+            background-size: 100% 100%;
+            opacity: 1;
+        }
+
+        .link-3 {
+            background: url(./images/header_nav3.png) no-repeat;
+            background-size: 100% 100%;
+            opacity: 1;
+        }
+
+        .link-4 {
+            background: url(./images/header_nav4.png) no-repeat;
+            background-size: 100% 100%;
+            opacity: 1;
+        }
+
+        .con1_nav ul {
             height: 60px;
             width: 320px;
             list-style: none;
         }
 
-        .con1_nav li, .con1_nav a{
+        .con1_nav li,
+        .con1_nav a {
             display: inline-block;
             height: 70px;
             width: 80px;
         }
 
-        .mainContainer_02{
+        .mainContainer_02 {
             margin-top: 250px;
             width: 100%;
             height: 75vh;
@@ -128,22 +224,24 @@
             height: 100%;
         }
 
-        .link_down{
+        .link_down {
             width: 100px;
             margin-right: 180px;
             margin-bottom: 5px;
         }
-        .link_down div{
+
+        .link_down div {
             background: url(./images/appdown.png);
             width: 240px;
             height: 80px;
             background-size: 100% 100%;
         }
-        .space{
+
+        .space {
             width: 250px;
         }
-        
-        .con2_section{
+
+        .con2_section {
             display: flex;
             width: 720px;
             flex-direction: column;
@@ -151,27 +249,27 @@
             margin-left: 70px;
         }
 
-        .section_nav{
+        .section_nav {
             margin-top: auto;
             width: 650px;
             height: 200px;
             display: flex;
         }
 
-        .section_nav a{
+        .section_nav a {
             display: inline-block;
-            flex:1;
+            flex: 1;
             display: flex;
             justify-content: center;
         }
 
-        .section_nav a div{
+        .section_nav a div {
             margin-top: 30px;
             width: 200px;
             height: 70px;
         }
-        
-        .con2_section h2{
+
+        .con2_section h2 {
             width: 370px;
             height: 100px;
             margin-top: 10px;
@@ -180,7 +278,7 @@
             text-indent: -999999px;
         }
 
-        .con2_section h1{
+        .con2_section h1 {
             margin-top: 10px;
             width: 98%;
             height: 370px;
@@ -189,7 +287,7 @@
             background-size: 100% 100%;
         }
 
-        .con2_section h3{
+        .con2_section h3 {
             margin-top: 40px;
             width: 87%;
             height: 100px;
@@ -201,7 +299,7 @@
             background-size: 100% 100%; */
         }
 
-        .section_img{
+        .section_img {
             width: 574px;
             height: 70vh;
             padding-left: 25px;
@@ -209,29 +307,30 @@
             padding-bottom: 105px;
         }
 
-        .section_img div{
+        .section_img div {
             width: 100%;
             height: 640px;
             background: url(./images/section-img-01.png) no-repeat;
             background-size: 100% 100%;
         }
 
-           /* 네비 숨기기 */
-        .section_nav, .section_nav *{
+        /* 네비 숨기기 */
+        .section_nav,
+        .section_nav * {
             display: none;
         }
 
-        .main_nav{
+        .main_nav {
             position: fixed;
             display: flex;
             flex-direction: column;
             width: 200px;
             height: 700px;
-            top : 180px;
+            top: 180px;
             right: 2%;
         }
 
-        .main_nav ul{
+        .main_nav ul {
             width: 50px;
             height: 270px;
             list-style: none;
@@ -241,8 +340,9 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-        } 
-        .main_nav li{
+        }
+
+        .main_nav li {
             margin: auto;
             width: 30px;
             height: 30px;
@@ -252,7 +352,7 @@
             background-position: center;
         }
 
-        .QRcode{
+        .QRcode {
             width: 200px;
             height: 220px;
             margin-top: auto;
@@ -260,7 +360,7 @@
             flex-direction: column;
         }
 
-        .QRcode div{
+        .QRcode div {
             width: 180px;
             height: 180px;
             margin: auto;
@@ -268,91 +368,96 @@
             background-size: 100% 100%;
         }
 
-        .QRcode p{
+        .QRcode p {
             margin-top: auto;
             height: 30px;
             text-indent: -999999px;
             background: url(./images/QRcodeContents.png) no-repeat;
             background-size: 100% 100%;
         }
-            /* 섹션3번 내용 숨기기 */
+
+        /* 섹션3번 내용 숨기기 */
         /* .con2_section h3{
             display: none;
         } */
 
-        @media screen and (max-width : 1600px){
+        @media screen and (max-width : 1600px) {
             * {
                 /* border: 0.001px solid black; */
             }
 
-            .main-Box{
+            .main-Box {
                 width: 1280px;
                 height: 100vh;
             }
 
-            .mainContainer_01{
+            .mainContainer_01 {
                 width: 1280px;
                 height: 200px;
                 display: flex;
                 position: fixed;
             }
 
-            .mainContainer_02{
+            .mainContainer_02 {
                 margin-top: 200px;
                 height: 500px;
                 width: 1280px;
             }
 
-            .con1_header{
+            .con1_header {
                 margin-left: 25px;
             }
-            .con2_section{
+
+            .con2_section {
                 width: 600px;
                 margin-left: 25px;
             }
-            .con1_title_01{
+
+            .con1_title_01 {
                 width: 120px;
                 height: 80px;
                 margin-top: 25px;
             }
-            
-            .con1_title_02{
+
+            .con1_title_02 {
                 width: 230px;
                 height: 50px;
             }
 
-            .con2_section h2{
+            .con2_section h2 {
                 width: 250px;
                 height: 65px;
             }
 
-            .con2_section h1{
+            .con2_section h1 {
                 height: 270px;
             }
 
-            .con2_section h3{
+            .con2_section h3 {
                 font-size: 1.6rem;
             }
-            .link-0{
+
+            .link-0 {
                 width: 45px;
                 height: 40px;
             }
 
-            .con1_nav{
+            .con1_nav {
                 margin-right: 170px;
             }
 
-            .con1_nav li, .con1_nav a{
+            .con1_nav li,
+            .con1_nav a {
                 height: 50px;
                 width: 60px;
             }
 
-            .link_down div{
+            .link_down div {
                 width: 200px;
                 height: 59px;
             }
-            
-            .section_img{
+
+            .section_img {
                 width: 500px;
                 height: 100%;
                 padding-left: 25px;
@@ -360,28 +465,28 @@
                 padding-bottom: 0px;
             }
 
-            .section_img div{
+            .section_img div {
                 height: 100%;
             }
 
-            .main_nav{
+            .main_nav {
                 width: 150px;
                 height: 600px;
-                top : 110px;
+                top: 110px;
                 right: 1.5%;
             }
 
-            .main_nav li{
+            .main_nav li {
                 width: 20px;
                 height: 20px;
             }
 
-            .QRcode{
+            .QRcode {
                 width: 150px;
                 height: 170px;
             }
 
-            .QRcode div{
+            .QRcode div {
                 width: 130px;
                 height: 130px;
             }
@@ -391,571 +496,599 @@
 
 
 
-            @media screen and (max-width : 1280px){
-            * {
-                /* border: 0.001px solid blue; */
+            @media screen and (max-width : 1280px) {
+                * {
+                    /* border: 0.001px solid blue; */
+                }
+
+                .main-Box {
+                    width: 840px;
+                    height: 100vh;
+                }
+
+                .mainContainer_01 {
+                    width: 840px;
+                    height: 200px;
+                    display: flex;
+                    position: fixed;
+                }
+
+                .mainContainer_02 {
+                    margin-top: 200px;
+                    height: 600px;
+                    width: 840px;
+                }
+
+                .con1_header {
+                    margin-left: 25px;
+                }
+
+                .con2_section {
+                    width: 340px;
+                    margin-left: 25px;
+                }
+
+                .con1_title_01 {
+                    width: 100px;
+                    height: 70px;
+                    margin-top: 25px;
+                }
+
+                .con1_title_02 {
+                    width: 200px;
+                    height: 40px;
+                }
+
+                .con2_section h2 {
+                    width: 220px;
+                    height: 50px;
+                    margin-top: -10px;
+                }
+
+                .con2_section h1 {
+                    height: 200px;
+                }
+
+                .con2_section h3 {
+                    font-size: 0.95rem;
+                }
+
+                .link-0 {
+                    width: 40px;
+                    height: 35px;
+                }
+
+                .con1_nav {
+                    margin-right: 140px;
+                    width: 55%;
+                }
+
+                .con1_nav li,
+                .con1_nav a {
+                    height: 40px;
+                    width: 50px;
+                }
+
+                .link_down div {
+                    width: 190px;
+                    height: 52px;
+                }
+
+                .section_img {
+                    width: 330px;
+                    height: 400px;
+                    padding-left: 25px;
+                    padding-right: 15px;
+                    padding-bottom: 0px;
+                }
+
+                .section_img div {
+                    height: 380px;
+                }
+
+                .main_nav {
+                    width: 130px;
+                    height: 500px;
+                    top: 74px;
+                    right: 2.5%;
+                }
+
+                .main_nav li {
+                    width: 13px;
+                    height: 13px;
+                }
+
+                .QRcode {
+                    width: 130px;
+                    height: 150px;
+                }
+
+                .QRcode div {
+                    width: 110px;
+                    height: 110px;
+                }
+
             }
 
-            .main-Box{
-                width: 840px;
-                height: 100vh;
+
+
+
+
+
+
+
+            @media screen and (max-width : 840px) {
+                * {
+                    /* border: 0.001px solid red; */
+                }
+
+                .main-Box {
+                    width: 100vw;
+                    height: 100vh;
+                }
+
+                .mainContainer_01 {
+                    width: 100vw;
+                    height: 20vh;
+                }
+
+                .mainContainer_02 {
+                    margin-top: 20vh;
+                    height: 80vh;
+                    width: 100vw;
+                }
+
+                .con1_header {
+                    margin-left: 15px;
+                    width: 20vw;
+                    height: 20vh;
+                }
+
+                .con2_section {
+                    width: 50%;
+                    margin-left: 15px;
+                }
+
+                .con1_title_01 {
+                    width: 90px;
+                    height: 65px;
+                    margin-top: 25px;
+                }
+
+                .con1_title_02 {
+                    width: 180px;
+                    height: 38px;
+                    margin-left: 4px;
+                }
+
+                .con2_section h2 {
+                    width: 210px;
+                    height: 45px;
+                    margin-top: 0px;
+                }
+
+                .con2_section h1 {
+                    height: 200px;
+                }
+
+                .con2_section h3 {
+                    width: 100%;
+                    margin-top: 20px;
+                    font-size: 0.8rem;
+                }
+
+                .link-0 {
+                    width: 40px;
+                    height: 35px;
+                }
+
+                .con1_nav {
+                    margin-right: 0px;
+                    width: 100%;
+                }
+
+                .con1_nav li,
+                .con1_nav a {
+                    height: 30px;
+                    width: 40px;
+                    margin-left: 3px;
+                }
+
+                .link_down div {
+                    width: 180px;
+                    height: 48px;
+                    margin-left: 20px;
+                }
+
+                .section_img {
+                    width: 330px;
+                    height: 400px;
+                    padding-left: 15px;
+                    padding-right: 25px;
+                    padding-bottom: 0px;
+                }
+
+                .section_img div {
+                    height: 380px;
+                }
+
+                .main_nav {
+                    width: 70px;
+                    height: 100px;
+                    top: 100px;
+                    right: 1.5%;
+                }
+
+                .main_nav li {
+                    width: 13px;
+                    height: 13px;
+                }
+
+                .QRcode {
+                    width: 130px;
+                    height: 150px;
+                    display: none;
+                }
+
+
             }
 
-            .mainContainer_01{
-                width: 840px;
-                height: 200px;
-                display: flex;
-                position: fixed;
+            @media screen and (max-width : 550px) {
+                * {
+                    /* border: 0.001px solid blue; */
+                }
+
+                .main-Box {
+                    width: 100vw;
+                    height: 100vh;
+                }
+
+                .mainContainer_01 {
+                    width: 100vw;
+                    height: 20vh;
+                    display: flex;
+                    position: fixed;
+                }
+
+                .mainContainer_02 {
+                    margin-top: 20vh;
+                    height: 80vh;
+                    width: 100vw;
+                    flex-direction: column;
+                }
+
+                .link * {
+                    display: none;
+                }
+
+                .con1_nav a,
+                .con1_nav li {
+                    height: 0px;
+                    width: 0px;
+                }
+
+                .con1_header {
+                    margin-left: 10px;
+                }
+
+                .link_down div {
+                    width: 140px;
+                    height: 52px;
+                    margin-left: 34px;
+                }
+
+                .con1_nav {
+                    height: 100%;
+                    width: 140px;
+                    margin-right: 0;
+                    margin-top: 10px;
+                    align-items: flex-start;
+                    justify-content: flex-end;
+                }
+
+                .con1_title_01 {
+                    width: 80px;
+                    height: 50px;
+                    margin-top: 20px;
+                }
+
+                .con1_title_02 {
+                    width: 150px;
+                    height: 30px;
+                    margin-left: 4px;
+                }
+
+                .QRcode {
+                    display: none;
+                }
+
+                .con2_section h2 {
+                    width: 170px;
+                    height: 40px;
+                    margin-top: 0px;
+                    margin-left: 10px;
+                }
+
+                .con2_section h3 {
+                    display: none;
+                }
+
+                .con2_section h1 {
+                    margin-top: 5px;
+                    margin-left: 10px;
+                    width: 90%;
+                    height: 180px;
+                }
+
+                .con2_section {
+                    width: 90%;
+                    margin-left: 0;
+                }
+
+                .section_img {
+                    width: 100%;
+                    height: 100%;
+                    padding: 10px;
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                }
+
+                .section_img div {
+                    height: 100%;
+                    width: 90%;
+                }
+
+                .main_nav {
+                    width: 80px;
+                    height: 100px;
+                    top: 130px;
+                    right: 2.5%;
+                }
+
+                .main_nav ul {
+                    margin-top: 100px;
+                }
             }
 
-            .mainContainer_02{
-                margin-top: 200px;
-                height: 600px;
-                width: 840px;
-            }
 
-            .con1_header{
-                margin-left: 25px;
-            }
-            .con2_section{
-                width: 340px;
-                margin-left: 25px;
-            }
-            .con1_title_01{
-                width: 100px;
-                height: 70px;
-                margin-top: 25px;
-            }
-            
-            .con1_title_02{
-                width: 200px;
-                height: 40px;
-            }
-
-            .con2_section h2{
-                width: 220px;
-                height: 50px;
-                margin-top: -10px;
-            }
-
-            .con2_section h1{
-                height: 200px;
-            }
-
-            .con2_section h3{
-                font-size: 0.95rem;
-            }
-            .link-0{
-                width: 40px;
-                height: 35px;
-            }
-
-            .con1_nav{
-                margin-right: 140px;
-                width: 55%;
-            }
-
-            .con1_nav li, .con1_nav a{
-                height: 40px;
-                width: 50px;
-            }
-
-            .link_down div{
-                width: 190px;
-                height: 52px;
-            }
-            
-            .section_img{
-                width: 330px;
-                height: 400px;
-                padding-left: 25px;
-                padding-right: 15px;
-                padding-bottom: 0px;
-            }
-
-            .section_img div{
-                height: 380px;
-            }
-
-            .main_nav{
-                width: 130px;
-                height: 500px;
-                top : 74px;
-                right: 2.5%;
-            }
-
-            .main_nav li{
-                width: 13px;
-                height: 13px;
-            }
-
-            .QRcode{
-                width: 130px;
-                height: 150px;
-            }
-
-            .QRcode div{
-                width: 110px;
-                height: 110px;
-            }
-            
         }
-
-
-
-
-
-
-
-
-        @media screen and (max-width : 840px){
-            * {
-                /* border: 0.001px solid red; */
-            }
-
-            .main-Box{
-                width: 100vw;
-                height: 100vh;
-            }
-
-            .mainContainer_01{
-                width: 100vw;
-                height: 20vh;
-            }
-
-            .mainContainer_02{
-                margin-top: 20vh;
-                height: 80vh;
-                width: 100vw;
-            }
-
-            .con1_header{
-                margin-left: 15px;
-                width: 20vw;
-                height: 20vh;
-            }
-
-            .con2_section{
-                width: 50%;
-                margin-left: 15px;
-            }
-
-            .con1_title_01{
-                width: 90px;
-                height: 65px;
-                margin-top: 25px;
-            }
-            
-            .con1_title_02{
-                width: 180px;
-                height: 38px;
-                margin-left: 4px;
-            }
-
-            .con2_section h2{
-                width: 210px;
-                height: 45px;
-                margin-top: 0px;
-            }
-
-            .con2_section h1{
-                height: 200px;
-            }
-
-            .con2_section h3{
-                width: 100%;
-                margin-top: 20px;
-                font-size: 1.2rem;
-            }
-
-            .link-0{
-                width: 40px;
-                height: 35px;
-            }
-
-            .con1_nav{
-                margin-right: 0px;
-                width: 100%;
-            }
-
-            .con1_nav li, .con1_nav a{
-                height: 30px;
-                width: 40px;
-            }
-
-            .link_down div{
-                width: 180px;
-                height: 48px;
-                margin-left: 20px;
-            }
-            
-            .section_img{
-                width: 330px;
-                height: 400px;
-                padding-left: 15px;
-                padding-right: 25px;
-                padding-bottom: 0px;
-            }
-
-            .section_img div{
-                height: 380px;
-            }
-
-            .main_nav{
-                width: 70px;
-                height: 100px;
-                top : 100px;
-                right: 1.5%;
-            }
-
-            .main_nav li{
-                width: 13px;
-                height: 13px;
-            }
-
-            .QRcode{
-                width: 130px;
-                height: 150px;
-                display: none;
-            }
-
-            
-        }
-
-        @media screen and (max-width : 550px){
-            * {
-                /* border: 0.001px solid blue; */
-            }
-
-            .main-Box{
-                width: 100vw;
-                height: 100vh;
-            }
-
-            .mainContainer_01{
-                width: 100vw;
-                height: 20vh;
-                display: flex;
-                position: fixed;
-            }
-
-            .mainContainer_02{
-                margin-top: 20vh;
-                height: 80vh;
-                width: 100vw;
-                flex-direction: column;
-            }
-            .link *{
-                display: none;
-            }
-
-            .con1_nav a, .con1_nav li {
-                height: 0px;
-                width: 0px;
-            }
-            .con1_header {
-                margin-left: 10px;
-            }
-
-            .link_down div {
-                width: 140px;
-                height: 52px;
-                margin-left: 34px;
-            }
-
-            .con1_nav {
-                height: 100%;
-                width: 140px;
-                margin-right: 0;
-                margin-top: 10px;
-                align-items: flex-start;
-                justify-content: flex-end;
-            }
-
-            .con1_title_01 {
-                width: 80px;
-                height: 50px;
-                margin-top: 20px;
-            }
-
-            .con1_title_02 {
-                width: 150px;
-                height: 30px;
-                margin-left: 4px;
-            }
-
-            .QRcode {
-                display: none;
-            }
-
-            .con2_section h2 {
-                width: 170px;
-                height: 40px;
-                margin-top: 0px;
-                margin-left: 10px;
-            }
-
-            .con2_section h3 {
-                display: none;
-            }
-
-            .con2_section h1 {
-                margin-top: 5px;
-                margin-left: 10px;
-                width: 90%;
-                height: 180px;
-            }
-
-            .con2_section {
-                width: 90%;
-                margin-left: 0;
-            }
-
-            .section_img {
-                width: 100%;
-                height: 100%;
-                padding: 10px;
-                display: flex;
-                align-items: flex-start;
-                justify-content: flex-start;
-            }
-
-            .section_img div {
-                height: 100%;
-                width: 90%;
-            }
-
-            .main_nav {
-                width: 80px;
-                height: 100px;
-                top: 130px;
-                right: 2.5%;
-            }
-            .main_nav ul{
-                margin-top: 100px;
-            }
-        }
-    
-    
-    }
     </style>
+
+
+
 </head>
 
 <body>
-        <article class="main-Box">
-            <div class="mainContainer_01">
-                <header class="con1_header">
-                    <a href="test" class="con1_title_01"><h1>집잡</h1></a>
-                    <a class="con1_title_02"><h2>집에서 잡았다!</h2></a>
-                </header>
-                <nav class="con1_nav">
-                    <ui>
-                        <li class="link_down"><a href="test" class="link_down"><div ></div></a></li>
-                        <li class="link"><a class="link"><div class="link-0 link-1"></div></a></li>
-                        <li class="link"><a class="link"><div class="link-0 link-2"></div></a></li>
-                        <li class="link"><a class="link"><div class="link-0 link-3"></div></a></li>
-                        <li class="link"><a class="link"><div class="link-0 link-4"></div></a></li>
-                    </ui>
+    <article class="main-Box">
+        <div class="mainContainer_01">
+            <header class="con1_header">
+                <a href="test" class="con1_title_01">
+                    <h1>집잡</h1>
+                </a>
+                <a class="con1_title_02">
+                    <h2>집에서 잡았다!</h2>
+                </a>
+            </header>
+            <nav class="con1_nav">
+                <ui>
+                    <li class="link_down"><a href="test" class="link_down">
+                            <div></div>
+                        </a></li>
+                    <li class="link"><a class="link">
+                            <div class="link-0 link-1"></div>
+                        </a></li>
+                    <li class="link"><a class="link">
+                            <div class="link-0 link-2"></div>
+                        </a></li>
+                    <li class="link"><a class="link">
+                            <div class="link-0 link-3"></div>
+                        </a></li>
+                    <li class="link"><a class="link">
+                            <div class="link-0 link-4"></div>
+                        </a></li>
+                </ui>
+            </nav>
+        </div>
+
+        <div class="mainContainer_02">
+            <section class="con2_section">
+                <h2>무엇이 다른가요?</h2>
+                <h1>무작위 배정, 무한정 대기. 그런 게 없어요.</h1>
+                <h3>현장 사장님이 직접 올린 구인공고를 스마트폰<br> 화면으로 보면서 내가 원하는 일을 선택하고 업무<br> 일정까지 잡을 수 있어요.</h3>
+                <nav class="section_nav">
+                    <a>
+                        <div></div>
+                    </a>
+                    <a>
+                        <div></div>
+                    </a>
                 </nav>
+            </section>
+            <div class="section_img">
+                <div></div>
             </div>
-
-            <div class="mainContainer_02">
-                <section class="con2_section">
-                    <h2>무엇이 다른가요?</h2>
-                    <h1>무작위 배정, 무한정 대기. 그런 게 없어요.</h1>
-                    <h3>현장 사장님이 직접 올린 구인공고를 스마트폰<br> 화면으로 보면서 내가 원하는 일을 선택하고 업무<br> 일정까지 잡을 수 있어요.</h3>
-                    <nav class="section_nav">
-                        <a>
-                            <div></div>
-                        </a>
-                        <a>
-                            <div></div>
-                        </a>
-                    </nav>
-                </section>
-                <div class="section_img">
-                    <div></div>
-                </div>
+        </div>
+        <nav class="main_nav">
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <div class="QRcode">
+                <div></div>
+                <p>QR코드 다운로드</p>
             </div>
-            <nav class="main_nav">
-                <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-                <div class="QRcode">
-                    <div></div>
-                    <p>QR코드 다운로드</p>
-                </div>
-            </nav>
-        </article>
+        </nav>
+    </article>
 
 
-        <article class="main-Box">
-            <div class="mainContainer_01">
-              
+    <article style="border: 1px solid red;" class="main-Box">
+        <div class="mainContainer_01">
+
+        </div>
+
+        <div class="mainContainer_02">
+            <section class="con2_section">
+                <h2>무엇이 다른가요?</h2>
+                <h1>무작위 배정, 무한정 대기. 그런 게 없어요.</h1>
+                <h3>현장 사장님이 직접 올린 구인공고를 스마트폰<br> 화면으로 보면서 내가 원하는 일을 선택하고 업무<br> 일정까지 잡을 수 있어요.</h3>
+                <nav class="section_nav">
+                    <a>
+                        <div></div>
+                    </a>
+                    <a>
+                        <div></div>
+                    </a>
+                </nav>
+            </section>
+            <div class="section_img">
+                <div></div>
             </div>
-
-            <div class="mainContainer_02">
-                <section class="con2_section">
-                    <h2>무엇이 다른가요?</h2>
-                    <h1>무작위 배정, 무한정 대기. 그런 게 없어요.</h1>
-                    <h3>현장 사장님이 직접 올린 구인공고를 스마트폰<br> 화면으로 보면서 내가 원하는 일을 선택하고 업무<br> 일정까지 잡을 수 있어요.</h3>
-                    <nav class="section_nav">
-                        <a>
-                            <div></div>
-                        </a>
-                        <a>
-                            <div></div>
-                        </a>
-                    </nav>
-                </section>
-                <div class="section_img">
-                    <div></div>
-                </div>
+        </div>
+        <nav class="main_nav">
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <div class="QRcode">
+                <div></div>
+                <p>QR코드 다운로드</p>
             </div>
-            <nav class="main_nav">
-                <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-                <div class="QRcode">
-                    <div></div>
-                    <p>QR코드 다운로드</p>
-                </div>
-            </nav>
-        </article>
+        </nav>
+    </article>
 
-        <article class="main-Box">
-            <div class="mainContainer_01">
-              
+
+    <article style="border: 1px solid purple;" class="main-Box">
+        <div class="mainContainer_01">
+
+        </div>
+
+        <div class="mainContainer_02">
+            <section class="con2_section">
+                <h2>무엇이 다른가요?</h2>
+                <h1>무작위 배정, 무한정 대기. 그런 게 없어요.</h1>
+                <h3>현장 사장님이 직접 올린 구인공고를 스마트폰<br> 화면으로 보면서 내가 원하는 일을 선택하고 업무<br> 일정까지 잡을 수 있어요.</h3>
+                <nav class="section_nav">
+                    <a>
+                        <div></div>
+                    </a>
+                    <a>
+                        <div></div>
+                    </a>
+                </nav>
+            </section>
+            <div class="section_img">
+                <div></div>
             </div>
-
-            <div class="mainContainer_02">
-                <section class="con2_section">
-                    <h2>무엇이 다른가요?</h2>
-                    <h1>무작위 배정, 무한정 대기. 그런 게 없어요.</h1>
-                    <h3>현장 사장님이 직접 올린 구인공고를 스마트폰<br> 화면으로 보면서 내가 원하는 일을 선택하고 업무<br> 일정까지 잡을 수 있어요.</h3>
-                    <nav class="section_nav">
-                        <a>
-                            <div></div>
-                        </a>
-                        <a>
-                            <div></div>
-                        </a>
-                    </nav>
-                </section>
-                <div class="section_img">
-                    <div></div>
-                </div>
+        </div>
+        <nav class="main_nav">
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <div class="QRcode">
+                <div></div>
+                <p>QR코드 다운로드</p>
             </div>
-            <nav class="main_nav">
-                <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-                <div class="QRcode">
-                    <div></div>
-                    <p>QR코드 다운로드</p>
-                </div>
-            </nav>
-        </article>
+        </nav>
+    </article>
 
 
-        <article class="main-Box">
-            <div class="mainContainer_01">
-              
+    <article style="border: 1px solid green;" class="main-Box">
+        <div class="mainContainer_01">
+
+        </div>
+
+        <div class="mainContainer_02">
+            <section class="con2_section">
+                <h2>무엇이 다른가요?</h2>
+                <h1>무작위 배정, 무한정 대기. 그런 게 없어요.</h1>
+                <h3>현장 사장님이 직접 올린 구인공고를 스마트폰<br> 화면으로 보면서 내가 원하는 일을 선택하고 업무<br> 일정까지 잡을 수 있어요.</h3>
+                <nav class="section_nav">
+                    <a>
+                        <div></div>
+                    </a>
+                    <a>
+                        <div></div>
+                    </a>
+                </nav>
+            </section>
+            <div class="section_img">
+                <div></div>
             </div>
-
-            <div class="mainContainer_02">
-                <section class="con2_section">
-                    <h2>무엇이 다른가요?</h2>
-                    <h1>무작위 배정, 무한정 대기. 그런 게 없어요.</h1>
-                    <h3>현장 사장님이 직접 올린 구인공고를 스마트폰<br> 화면으로 보면서 내가 원하는 일을 선택하고 업무<br> 일정까지 잡을 수 있어요.</h3>
-                    <nav class="section_nav">
-                        <a>
-                            <div></div>
-                        </a>
-                        <a>
-                            <div></div>
-                        </a>
-                    </nav>
-                </section>
-                <div class="section_img">
-                    <div></div>
-                </div>
+        </div>
+        <nav class="main_nav">
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <div class="QRcode">
+                <div></div>
+                <p>QR코드 다운로드</p>
             </div>
-            <nav class="main_nav">
-                <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-                <div class="QRcode">
-                    <div></div>
-                    <p>QR코드 다운로드</p>
-                </div>
-            </nav>
-        </article>
+        </nav>
+    </article>
 
+    <article style="border: 1px solid blue;" class="main-Box">
+        <div class="mainContainer_01">
 
+        </div>
 
-        <article class="main-Box">
-            <div class="mainContainer_01">
-              
+        <div class="mainContainer_02">
+            <section class="con2_section">
+                <h2>무엇이 다른가요?</h2>
+                <h1>무작위 배정, 무한정 대기. 그런 게 없어요.</h1>
+                <h3>현장 사장님이 직접 올린 구인공고를 스마트폰<br> 화면으로 보면서 내가 원하는 일을 선택하고 업무<br> 일정까지 잡을 수 있어요.</h3>
+                <nav class="section_nav">
+                    <a>
+                        <div></div>
+                    </a>
+                    <a>
+                        <div></div>
+                    </a>
+                </nav>
+            </section>
+            <div class="section_img">
+                <div></div>
             </div>
-
-            <div class="mainContainer_02">
-                <section class="con2_section">
-                    <h2>무엇이 다른가요?</h2>
-                    <h1>무작위 배정, 무한정 대기. 그런 게 없어요.</h1>
-                    <h3>현장 사장님이 직접 올린 구인공고를 스마트폰<br> 화면으로 보면서 내가 원하는 일을 선택하고 업무<br> 일정까지 잡을 수 있어요.</h3>
-                    <nav class="section_nav">
-                        <a>
-                            <div></div>
-                        </a>
-                        <a>
-                            <div></div>
-                        </a>
-                    </nav>
-                </section>
-                <div class="section_img">
-                    <div></div>
-                </div>
+        </div>
+        <nav class="main_nav">
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <div class="QRcode">
+                <div></div>
+                <p>QR코드 다운로드</p>
             </div>
-            <nav class="main_nav">
-                <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-                <div class="QRcode">
-                    <div></div>
-                    <p>QR코드 다운로드</p>
-                </div>
-            </nav>
-        </article>
+        </nav>
+    </article>
+    
 </body>
+
 </html>
