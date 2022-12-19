@@ -20,6 +20,11 @@
             let moveTop = 0;
             let nowPageHeight = window.scrollY;
 
+
+            // window.addEventListener("wheel", function (e) {
+            //     e.preventDefault();
+            // }, { passive: false });
+
             const throttle = (callback, delay) => {
                 let timer;
 
@@ -33,29 +38,34 @@
                 };
             };
 
+
             function test() {
-                
+
                 let nowPageHeight = window.scrollY;
 
 
 
-                if (positionPageHeight < nowPageHeight) {
+                if (positionPageHeight < nowPageHeight - 10) {
 
                     nowPageNumber = nowPageNumber >= totolPageNumber ? totolPageNumber : (++nowPageNumber);
                     moveTop = window.innerHeight * nowPageNumber;
                     positionPageHeight = moveTop;
                     nowPageHeight = moveTop;
 
+
+                    console.log("페이지 : ", nowPageNumber);
                     $('html, body').animate({
                         scrollTop: moveTop
                     }, speed);
+                    $('html, body').animate({
+                        scrollTop: moveTop
+                    }, 0);
 
-                    return;
                 }
 
 
 
-                if (positionPageHeight > nowPageHeight) {
+                else if (positionPageHeight > nowPageHeight + 10) {
 
 
                     nowPageNumber = nowPageNumber <= 0 ? 0 : (--nowPageNumber);
@@ -63,11 +73,17 @@
                     positionPageHeight = moveTop;
                     nowPageHeight = moveTop;
 
+                    console.log("페이지 : ", nowPageNumber);
+
+
                     $('html, body').animate({
                         scrollTop: moveTop
                     }, speed);
 
-                    return;
+                    $('html, body').animate({
+                        scrollTop: moveTop
+                    }, 0);
+
                 }
 
 
@@ -77,18 +93,17 @@
                 console.log("현재 화면 위치", nowPageHeight);
 
                 console.log("이동px", moveTop);
-                console.log("페이지 : ", nowPageNumber);
+
 
             }
 
 
 
 
-            $(window).scroll(throttle(test, 500));
-            $("html, body").stop().animate({
-                       scrollTop: moveTop
-            }, speed);
-
+            $(window).scroll(throttle(test, speed + 100));
+            // $("html, body").stop().animate({
+            //            scrollTop: moveTop
+            // }, speed);
 
         })
 
@@ -1088,7 +1103,7 @@
             </div>
         </nav>
     </article>
-    
+
 </body>
 
 </html>
