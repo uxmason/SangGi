@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
     <title>zipjob</title>
 
     <script>
@@ -19,6 +19,13 @@
             let nowPageNumber = 0;
             let moveTop = 0;
             let nowPageHeight = window.scrollY;
+
+
+            var startY;
+            var endY;
+            var wheelValue = 0;
+
+            var isAnimationNow = false;
 
 
             // window.addEventListener("wheel", function (e) {
@@ -100,10 +107,59 @@
 
 
 
-            $(window).scroll(throttle(test, speed + 100));
+            // $(window).scroll(throttle(test, speed + 100));
             // $("html, body").stop().animate({
             //            scrollTop: moveTop
-            // }, speed);
+            // }, speed);''
+
+            $(window).scroll(() => {
+                
+            });
+
+            $(window).on('touchstart', () => {
+                // startY = window.scrollY
+            })
+
+            $(window).on('touchend', () => {
+                // endY = window.scrollY
+                // if(endY - startY > 200) {
+                //     nowPageNumber ++;
+                // }
+                // if(startY - endY > 200) {
+                //     nowPageNumber --;
+                // }
+                // $('html, body').animate({
+                //     scrollTop: window.innerHeight * nowPageNumber
+                // }, 300);
+            })
+            $(window).on('mousewheel', (e) => {
+                // wheelValue += e.originalEvent.wheelDelta;
+                wheelValue += e.originalEvent.deltaY;
+                // console.log('jjj', e.originalEvent.deltaY )
+                if(wheelValue < 0) {
+                    wheelValue = 0;
+                }
+                console.log('kkk', wheelValue )
+                if(!isAnimationNow) {
+                    if(wheelValue > 20) {
+                        wheelValue = 0;
+                        nowPageNumber ++;
+                        isAnimationNow = true;
+
+                        $('html, body').animate({
+                            scrollTop: window.innerHeight * nowPageNumber
+                        }, 1000, ()=> {
+                            timer = setTimeout(() => {
+                                timer = null;
+                                isAnimationNow = false;
+                            }, 1000);
+                        });
+                    }
+                }
+                // $('html, body').animate({
+                //     scrollTop: wheelValue/5
+                // }, 0);
+            })
 
         })
 
@@ -116,6 +172,7 @@
             padding: 0;
             position: relative;
             /* border: 1px green solid; */
+            scroll-behavior: initial;
         }
 
         body::-webkit-scrollbar {
@@ -127,6 +184,11 @@
             background-color: rgb(244, 192, 28);
             width: 100vw;
             height: 100vh;
+            overflow: hidden;
+        }
+
+        .container-0 {
+            height: 100%;
         }
 
         .main-Box {
@@ -875,6 +937,7 @@
 </head>
 
 <body>
+    <div class="container-0">
     <article class="main-Box">
         <div class="mainContainer_01">
             <header class="con1_header">
@@ -1103,7 +1166,7 @@
             </div>
         </nav>
     </article>
-
+    </div>
 </body>
 
 </html>
